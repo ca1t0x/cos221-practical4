@@ -1,0 +1,4 @@
+com\mycompany\Main.class
+com\mycompany\gui\MainWindow.class
+com\mycompany\App.class
+com\mycompany\DatabaseConnection\DatabaseConnection.class
