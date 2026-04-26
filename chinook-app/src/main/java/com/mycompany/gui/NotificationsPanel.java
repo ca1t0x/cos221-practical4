@@ -55,10 +55,12 @@ public class NotificationsPanel extends JPanel {
         JButton add = new JButton("Add");
         JButton update = new JButton("Update");
         JButton delete = new JButton("Delete");
+        JButton inactive = new JButton("Show Inactive");
 
         buttons.add(add);
         buttons.add(update);
         buttons.add(delete);
+        buttons.add(inactive);
 
         // TABLE
         model = new DefaultTableModel();
@@ -74,6 +76,7 @@ public class NotificationsPanel extends JPanel {
         add.addActionListener(e -> addCustomer());
         update.addActionListener(e -> updateCustomer());
         delete.addActionListener(e -> deleteCustomer());
+        inactive.addActionListener(e -> loadInactiveCustomers());
 
         table.getSelectionModel().addListSelectionListener(e -> {
             int row = table.getSelectedRow();
@@ -167,4 +170,34 @@ public class NotificationsPanel extends JPanel {
             e.printStackTrace();
         }
     }
+
+    private void loadInactiveCustomers() {
+
+    String sql =
+        "SELECT c.CustomerId, c.FirstName, c.LastName, MAX(i.InvoiceDate) AS LastPurchase " +
+        "FROM Customer c " +
+        "LEFT JOIN Invoice i ON c.CustomerId = i.CustomerId " +
+        "GROUP BY c.CustomerId " +
+        "HAVING LastPurchase IS NULL OR LastPurchase < DATE_SUB(NOW(), INTERVAL 2 YEAR)";
+
+    try (Connection conn = DatabaseConnection.getConnection();
+         Statement stmt = conn.createStatement();
+         ResultSet rs = stmt.executeQuery(sql)) {
+
+        model.setRowCount(0);
+
+        while (rs.next()) {
+            model.addRow(new Object[]{
+                    rs.getInt("CustomerId"),
+                    rs.getString("FirstName"),
+                    rs.getString("LastName"),
+                    rs.getString("LastPurchase")
+            });
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
 }
