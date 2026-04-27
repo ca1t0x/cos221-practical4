@@ -1,6 +1,8 @@
 package com.mycompany.gui;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 public class MainWindow extends JFrame {
 
@@ -17,6 +19,7 @@ public class MainWindow extends JFrame {
         tabs.addTab("Report", new JPanel());
         tabs.addTab("Notifications", new JPanel());
         tabs.addTab("Recommendations", new JPanel());
+        
 
         add(tabs);
     }

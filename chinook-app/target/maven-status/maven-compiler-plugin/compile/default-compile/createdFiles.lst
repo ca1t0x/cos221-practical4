@@ -1,4 +1,7 @@
+com\mycompany\gui\NotificationsPanel.class
+com\mycompany\App.class
+com\mycompany\gui\ReportPanel.class
 com\mycompany\Main.class
 com\mycompany\gui\MainWindow.class
-com\mycompany\App.class
+com\mycompany\gui\RecommendationsPanel.class
 com\mycompany\DatabaseConnection\DatabaseConnection.class
