@@ -171,7 +171,7 @@ public class NotificationsPanel extends JPanel {
         }
     }
 
-    private void loadInactiveCustomers() {
+     private void loadInactiveCustomers() {
 
     String sql =
         "SELECT c.CustomerId, c.FirstName, c.LastName, MAX(i.InvoiceDate) AS LastPurchase " +
@@ -199,5 +199,7 @@ public class NotificationsPanel extends JPanel {
         e.printStackTrace();
     }
 }
+
+   
 
 }
