@@ -19,6 +19,7 @@ public class MainWindow extends JFrame {
         tabs.addTab("Report", new JPanel());
         tabs.addTab("Notifications", new JPanel());
         tabs.addTab("Recommendations", new JPanel());
+        tabs.addTab("Report", new ReportPanel());
         
 
         add(tabs);
