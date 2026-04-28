@@ -1,9 +1,10 @@
-package com.mycompany;
-
-import com.mycompany.gui.MainWindow;
+import ui.MainFrame;
 
 public class Main {
     public static void main(String[] args) {
-        new MainWindow().setVisible(true);
+        javax.swing.SwingUtilities.invokeLater(() -> {
+            MainFrame frame = new MainFrame();
+            frame.setVisible(true);
+        });
     }
 }
